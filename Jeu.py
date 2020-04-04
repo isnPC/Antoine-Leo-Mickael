@@ -11,7 +11,7 @@ ecran = pygame.display.set_mode((1080, 720))
 
 bg = pygame.image.load("fond.png")
 
-game = Game()
+#game = pygame.Game()
 monstre = Monstre()
 
 running = True
@@ -19,11 +19,11 @@ running = True
 #Boucle Infinie
 
 while running:
-    for event in pygame.event.get():
+    ecran.blit(bg, (0, 0))
+    ecran.blit(monstre.image,monstre.rect)
+    pygame.display.flip()
 
-        ecran.blit(bg, (0, 0))
-        ecran.blit(monstre.image,monstre.rect)
-        pygame.display.flip()
+    for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
 
@@ -31,5 +31,5 @@ while running:
             pygame.quit()
             print("jeu fermé")
         #Mouvements Monstres
-
-        move()
+        if event.type  == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+            monstre.move()

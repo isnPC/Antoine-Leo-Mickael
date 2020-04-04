@@ -4,7 +4,7 @@ import pygame
 
 class Monstre(pygame.sprite.Sprite):
 
-    def init(self):
+    def __init__(self):
         super().__init__()
         self.health = 100
         self.max_health = 100
