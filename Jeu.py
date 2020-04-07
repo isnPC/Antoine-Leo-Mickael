@@ -19,6 +19,7 @@ running = True
 #Boucle Infinie
 Chauve_souris.rect.x = Chauve_souris.rect.x + 100
 Chauve_souris.rect.y = Chauve_souris.rect.y + 300
+
 while running:
     ecran.blit(bg, (0, 0))
     ecran.blit(Chauve_souris.image,(Chauve_souris.rect.x, Chauve_souris.rect.y))
@@ -31,10 +32,11 @@ while running:
             running = False
             pygame.quit()
             print("jeu fermé")
-        #Mouvements Monstres
 
-        Chauve_souris.mouvements()
+    #Mouvements Monstres
 
-        #Tests de colisions entre les monstres et les joueurs:
+    Chauve_souris.mouvements()
 
-        Chauve_souris.attaque_chauve_souris()
+    #Tests de colisions entre les monstres et les joueurs:
+
+    Chauve_souris.attaque_chauve_souris()
