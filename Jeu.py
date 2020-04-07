@@ -1,6 +1,6 @@
 ﻿import pygame
 pygame.init()
-from monstre import Monstre
+from Chauve_souris import Chauve_souris
 
 
 #Création de la fenêtre :
@@ -12,16 +12,16 @@ ecran = pygame.display.set_mode((1000, 800))
 bg = pygame.image.load("fond.png")
 
 #game = pygame.Game()
-monstre = Monstre()
+Chauve_souris = Chauve_souris()
 
 running = True
 
 #Boucle Infinie
-monstre.rect.x = monstre.rect.x + 100
-monstre.rect.y = monstre.rect.y + 300
+Chauve_souris.rect.x = Chauve_souris.rect.x + 100
+Chauve_souris.rect.y = Chauve_souris.rect.y + 300
 while running:
     ecran.blit(bg, (0, 0))
-    ecran.blit(monstre.image,(monstre.rect.x, monstre.rect.y))
+    ecran.blit(Chauve_souris.image,(Chauve_souris.rect.x, Chauve_souris.rect.y))
     pygame.display.flip()
 
     for event in pygame.event.get():
@@ -33,5 +33,5 @@ while running:
             print("jeu fermé")
         #Mouvements Monstres
 
-        monstre.mouvements()
+        Chauve_souris.mouvements()
         #if monstre.rect.
