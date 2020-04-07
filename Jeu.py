@@ -34,4 +34,7 @@ while running:
         #Mouvements Monstres
 
         Chauve_souris.mouvements()
-        #if monstre.rect.
+
+        #Tests de colisions entre les monstres et les joueurs:
+
+        Chauve_souris.attaque_chauve_souris()

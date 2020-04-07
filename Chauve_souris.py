@@ -19,3 +19,7 @@ class Chauve_souris(pygame.sprite.Sprite):
         self.rect.x += self.velocity
         self.rect.y += self.velocity*randint(-20, 20)
         pygame.time.delay(1000)
+
+    def attaque_chauve_souris(self):
+        if self.rect == player.rect:
+            player.health = player.health - self.attack
