@@ -1,6 +1,7 @@
 ﻿import pygame
 pygame.init()
 from Chauve_souris import Chauve_souris
+from game import Game
 
 
 #Création de la fenêtre :
@@ -11,7 +12,7 @@ ecran = pygame.display.set_mode((1000, 800))
 
 bg = pygame.image.load("fond.png")
 
-#game = pygame.Game()
+game = Game()
 Chauve_souris = Chauve_souris()
 
 running = True
@@ -36,6 +37,8 @@ while running:
     #Mouvements Monstres
 
     Chauve_souris.mouvements()
+    game.spawn_monstres()
+
 
     #Tests de colisions entre les monstres et les joueurs:
 

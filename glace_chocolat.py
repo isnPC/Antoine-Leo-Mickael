@@ -1,5 +1,5 @@
 ﻿import pygame
-from player import Joueur
+
 
 player = Player()
 
@@ -29,6 +29,6 @@ class Glace_chocolat(pygame.sprite.Sprite):
 
         pygame.time.delay(1000)
 
-    def attaque_chauve_souris(self):
+    def attaque_glace_chocolat(self):
         if self.rect == player.rect:
             player.health = player.health - self.attack

@@ -1,8 +1,6 @@
 ﻿import pygame
 from random import randint
-from player import Player
 
-player = Player()
 
 class Chauve_souris(pygame.sprite.Sprite):
 
