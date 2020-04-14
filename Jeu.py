@@ -15,25 +15,20 @@ ecran = pygame.display.set_mode((1000, 800))
 bg = pygame.image.load("fond.png")
 running = True
 vague = 1
-v1 = [Chauve_souris(), Chauve_souris()]
-
-#-----[Fond Ecran]-----#
-
-ecran.blit(bg, (0, 0))
-
-#-----[Vagues de monstres]-----#
-
-if vague == 1:
-    for monstre in v1:
-        ecran.blit(monstre.image, (5, 500))
-        print('a')
+v1 = [Chauve_souris(5, 300), Chauve_souris(5, 500)]
 
 #----------[Boucle Infinie]----------#
 
 while running:
-    #-----[Actualisation]-----#
+    #-----[Fond Ecran]-----#
 
-    pygame.display.flip()
+    ecran.blit(bg, (0, 0))
+    #-----[Mouvements]-----#
+
+    if vague == 1:
+        for monstre in v1:
+            monstre.mouvements()
+            ecran.blit(monstre.image, monstre.rect)
 
     #-----[Gestion de la fermeture du jeu]-----#
 
@@ -42,15 +37,15 @@ while running:
         if event.type == pygame.QUIT:
 
             running = False
-            pygame.quit()
-            print("jeu fermé")
 
-    #-----[Mouvements]-----#
+    #-----[Actualisation]-----#
 
-    Chauve_souris.mouvements
-
+    pygame.display.flip()
+    pygame.time.delay(100)
 
 
+pygame.quit()
+print("jeu fermé")
 
 
 
