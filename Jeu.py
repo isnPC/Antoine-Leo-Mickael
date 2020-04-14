@@ -1,6 +1,7 @@
 ﻿import pygame
 pygame.init()
 from Chauve_souris import Chauve_souris
+from random import randint
 
 
 
@@ -16,13 +17,22 @@ running = True
 vague = 1
 v1 = [Chauve_souris(), Chauve_souris()]
 
+#-----[Fond Ecran]-----#
+
+ecran.blit(bg, (0, 0))
+
+#-----[Vagues de monstres]-----#
+
+if vague == 1:
+    for monstre in v1:
+        ecran.blit(monstre.image, (5, 500))
+        print('a')
+
 #----------[Boucle Infinie]----------#
 
 while running:
+    #-----[Actualisation]-----#
 
-    #-----[Actualisation Ecran]-----#
-
-    ecran.blit(bg, (0, 0))
     pygame.display.flip()
 
     #-----[Gestion de la fermeture du jeu]-----#
@@ -35,10 +45,11 @@ while running:
             pygame.quit()
             print("jeu fermé")
 
-    #-----[Vagues de monstres]-----#
+    #-----[Mouvements]-----#
 
-    if vague == 1:
-        ecran.blit(v1,(500, 50))
+    Chauve_souris.mouvements
+
+
 
 
 
