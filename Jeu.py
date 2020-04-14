@@ -1,30 +1,31 @@
 ﻿import pygame
 pygame.init()
 from Chauve_souris import Chauve_souris
-from game import Game
 
 
-#Création de la fenêtre :
+
+#----------[Création de la fenêtre]---------#
 
 pygame.display.set_caption("test")
 ecran = pygame.display.set_mode((1000, 800))
 
+#----------[Variables]----------#
 
 bg = pygame.image.load("fond.png")
-
-game = Game()
-Chauve_souris = Chauve_souris()
-
 running = True
+vague = 1
+v1 = [Chauve_souris(), Chauve_souris()]
 
-#Boucle Infinie
-Chauve_souris.rect.x = Chauve_souris.rect.x + 100
-Chauve_souris.rect.y = Chauve_souris.rect.y + 300
+#----------[Boucle Infinie]----------#
 
 while running:
+
+    #-----[Actualisation Ecran]-----#
+
     ecran.blit(bg, (0, 0))
-    ecran.blit(Chauve_souris.image,(Chauve_souris.rect.x, Chauve_souris.rect.y))
     pygame.display.flip()
+
+    #-----[Gestion de la fermeture du jeu]-----#
 
     for event in pygame.event.get():
 
@@ -34,12 +35,11 @@ while running:
             pygame.quit()
             print("jeu fermé")
 
-    #Mouvements Monstres
+    #-----[Vagues de monstres]-----#
 
-    Chauve_souris.mouvements()
-    game.spawn_monstres()
+    if vague == 1:
+        ecran.blit(v1,(500, 50))
 
 
-    #Tests de colisions entre les monstres et les joueurs:
 
-    Chauve_souris.attaque_chauve_souris()
+
