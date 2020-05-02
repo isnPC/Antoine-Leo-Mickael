@@ -51,9 +51,11 @@ while running:
     #-----[Mouvements Vague 1]-----#
 
     else:
-        v1_p = v1[0].mouvements()
+        m1_p = v1[0].mouvements()
+        m2_p = v1[1].mouvements()
         ecran.blit(bg, (0, 0))
-        ecran.blit(v1[0].image, v1_p)
+        ecran.blit(v1[0].image, m1_p)
+        ecran.blit(v1[1].image, m2_p)
 
 
 
