@@ -1,10 +1,9 @@
 ﻿import pygame
-pygame.init()
+from pygame.time import set_timer
 from Chauve_souris import Chauve_souris
-from random import randint
 
 
-
+pygame.init()
 #----------[Création de la fenêtre]---------#
 
 pygame.display.set_caption("test")
@@ -14,9 +13,10 @@ ecran = pygame.display.set_mode((1000, 800))
 
 bg = pygame.image.load("fond.png")
 running = True
-spawn = 0
 vague = 1
-v1 = [Chauve_souris(), Chauve_souris()]
+
+v1 = [Chauve_souris(5, 500), Chauve_souris(15, 500)]
+set_timer(pygame.USEREVENT, 10)
 
 #-----[Fond Ecran]-----#
 
@@ -30,32 +30,25 @@ while running:
 
     pygame.display.flip()
 
-    #-----[Gestion de la fermeture du jeu]-----#
+    ecran.blit(bg, (0, 0))
+
+    #-----[Vague 1]-----#
+
+    if vague == 1:
+        for monstre in v1:
+            ecran.blit(monstre.image, monstre.rect)
 
     for event in pygame.event.get():
-
+        #-----[Gestion de la fermeture du jeu]-----#
         if event.type == pygame.QUIT:
-
             running = False
             pygame.quit()
             print("jeu fermé")
 
-    #-----[Vague 1]-----#
-
-    if vague == 1 and spawn == 0:
-        global spawn
-        spawn = 1
-        for monstre in v1:
-            ecran.blit(monstre.image, (5, 500))
-
-    #-----[Mouvements Vague 1]-----#
-
-    else:
-        m1_p = v1[0].mouvements()
-        m2_p = v1[1].mouvements()
-        ecran.blit(bg, (0, 0))
-        ecran.blit(v1[0].image, m1_p)
-        ecran.blit(v1[1].image, m2_p)
+        #-----[Mouvements Vague 1]-----#
+        if event.type == pygame.USEREVENT:
+            for monstre in v1:
+                monstre.mouvements()
 
 
 
