@@ -7,7 +7,7 @@ pygame.init()
 #----------[Création de la fenêtre]---------#
 
 pygame.display.set_caption("test")
-ecran = pygame.display.set_mode((1000, 800))
+ecran = pygame.display.set_mode((1000, 720))
 
 #----------[Variables]----------#
 
@@ -16,7 +16,7 @@ running = True
 vague = 1
 
 v1 = [Chauve_souris(5, 500), Chauve_souris(15, 500)]
-set_timer(pygame.USEREVENT, 10)
+set_timer(pygame.USEREVENT, 60)
 
 #-----[Fond Ecran]-----#
 
@@ -49,7 +49,7 @@ while running:
         if event.type == pygame.USEREVENT:
             for monstre in v1:
                 monstre.mouvements()
-
+                monstre.barre2vie()
 
 
 
