@@ -22,7 +22,7 @@ bar2vie50 = pygame.image.load('Barre2vie50.png')
 bar2vie25 = pygame.image.load('Barre2vie25.png')
 bar2vie0 = pygame.image.load('Barre2vie0.png')
 
-v1 = [Chauve_souris(5, 500), Chauve_souris(15, 500)]
+v1 = [Chauve_souris(5, 500), Chauve_souris(15, 500), Chauve_souris(15, 500), Chauve_souris(15, 500)]
 set_timer(pygame.USEREVENT, 60)
 
 #-----[Fonctions]-----#
@@ -42,9 +42,7 @@ def barre2vie(mob):
 
 def mort_mob(mob):
     if mob.health == 0:
-        return True
-    else:
-        return False
+        v1.remove(mob)
 
 
 
@@ -66,9 +64,9 @@ while running:
 
     if vague == 1:
         for monstre in v1:
-            if mort_mob(monstre) == False:
-                ecran.blit(monstre.image, monstre.rect)
-                barre2vie(monstre)
+            ecran.blit(monstre.image, monstre.rect)
+            barre2vie(monstre)
+            mort_mob(monstre)
 
 
     for event in pygame.event.get():
