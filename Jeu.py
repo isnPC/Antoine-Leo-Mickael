@@ -4,6 +4,7 @@ from Chauve_souris import Chauve_souris
 
 
 pygame.init()
+
 #----------[Création de la fenêtre]---------#
 
 pygame.display.set_caption("test")
@@ -29,7 +30,21 @@ set_timer(pygame.USEREVENT, 60)
 def barre2vie(mob):
     """Affiche les pvs du mob au dessus de sa tête"""
     if mob.health == mob.max_health:
-        ecran.blit(bar2vie100, (mob.rect.x, mob.rect.y - 20))
+        ecran.blit(bar2vie100, (mob.rect.x + 10, mob.rect.y - 20))
+    elif mob.health == mob.max_health*0.75:
+        ecran.blit(bar2vie75, (mob.rect.x + 10, mob.rect.y - 20))
+    elif mob.health == mob.max_health*0.5:
+        ecran.blit(bar2vie50, (mob.rect.x + 10, mob.rect.y - 20))
+    elif mob.health == mob.max_health*0.25:
+        ecran.blit(bar2vie25, (mob.rect.x + 10, mob.rect.y - 20))
+    elif mob.health == mob.max_health*0:
+        ecran.blit(bar2vie0, (mob.rect.x + 10, mob.rect.y - 20))
+
+def mort_mob(mob):
+    if mob.health == 0:
+        mob.remove
+
+
 
 #-----[Fond Ecran]-----#
 
@@ -50,6 +65,8 @@ while running:
     if vague == 1:
         for monstre in v1:
             ecran.blit(monstre.image, monstre.rect)
+            barre2vie(monstre)
+            mort_mob(monstre)
 
     for event in pygame.event.get():
         #-----[Gestion de la fermeture du jeu]-----#
@@ -58,11 +75,15 @@ while running:
             pygame.quit()
             print("jeu fermé")
 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                monstre.health = monstre.health - 25
+
         #-----[Mouvements Vague 1]-----#
         if event.type == pygame.USEREVENT:
             for monstre in v1:
-                barre2vie(monstre)
                 monstre.mouvements()
+
 
 
 
