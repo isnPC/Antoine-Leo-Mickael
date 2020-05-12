@@ -15,8 +15,21 @@ bg = pygame.image.load("fond.png")
 running = True
 vague = 1
 
+bar2vie100 = pygame.image.load('Barre2vie100.png')
+bar2vie75 = pygame.image.load('Barre2vie75.png')
+bar2vie50 = pygame.image.load('Barre2vie50.png')
+bar2vie25 = pygame.image.load('Barre2vie25.png')
+bar2vie0 = pygame.image.load('Barre2vie0.png')
+
 v1 = [Chauve_souris(5, 500), Chauve_souris(15, 500)]
 set_timer(pygame.USEREVENT, 60)
+
+#-----[Fonctions]-----#
+
+def barre2vie(mob):
+    """Affiche les pvs du mob au dessus de sa tête"""
+    if mob.health == mob.max_health:
+        ecran.blit(bar2vie100, (mob.rect.x, mob.rect.y - 20))
 
 #-----[Fond Ecran]-----#
 
@@ -48,13 +61,8 @@ while running:
         #-----[Mouvements Vague 1]-----#
         if event.type == pygame.USEREVENT:
             for monstre in v1:
+                barre2vie(monstre)
                 monstre.mouvements()
-                monstre.barre2vie()
-
-
-
-
-
 
 
 
