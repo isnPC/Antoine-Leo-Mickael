@@ -42,7 +42,9 @@ def barre2vie(mob):
 
 def mort_mob(mob):
     if mob.health == 0:
-        mob.remove
+        return True
+    else:
+        return False
 
 
 
@@ -64,9 +66,10 @@ while running:
 
     if vague == 1:
         for monstre in v1:
-            ecran.blit(monstre.image, monstre.rect)
-            barre2vie(monstre)
-            mort_mob(monstre)
+            if mort_mob(monstre) == False:
+                ecran.blit(monstre.image, monstre.rect)
+                barre2vie(monstre)
+
 
     for event in pygame.event.get():
         #-----[Gestion de la fermeture du jeu]-----#
