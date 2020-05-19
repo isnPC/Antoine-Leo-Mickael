@@ -1,6 +1,7 @@
 ﻿import pygame
 from pygame.time import set_timer
 from Chauve_souris import Chauve_souris
+from boss_monster_truck import Monster_Truck
 
 
 pygame.init()
@@ -23,7 +24,8 @@ bar2vie25 = pygame.image.load('Barre2vie25.png')
 bar2vie0 = pygame.image.load('Barre2vie0.png')
 
 v1 = [Chauve_souris(5, 500), Chauve_souris(15, 500), Chauve_souris(15, 500), Chauve_souris(15, 500)]
-v2 = [Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),]
+v2 = [Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500)]
+v3 = [Monster_Truck(5, 500),]
 set_timer(pygame.USEREVENT, 60)
 n_vague = v1
 
@@ -44,7 +46,7 @@ def barre2vie(mob):
 
 def mort_mob(mob):
     if mob.health == 0:
-        v1.remove(mob)
+        n_vague.remove(mob)
 
 
 
@@ -77,8 +79,15 @@ while running:
             ecran.blit(monstre.image, monstre.rect)
             barre2vie(monstre)
             mort_mob(monstre)
-        if len(v1) == 0:
+        if len(v2) == 0:
             vague = 3
+            n_vague = v3
+    if vague == 3:
+        for monstre in v3:
+            ecran.blit(monstre.image, monstre.rect)
+            barre2vie(monstre)
+            mort_mob(monstre)
+
 
 
 
@@ -96,7 +105,10 @@ while running:
         #-----[Mouvements Vague 1]-----#
         if event.type == pygame.USEREVENT:
             for monstre in n_vague:
-                monstre.mouvements()
+                if n_vague != v3:
+                    monstre.mouvements()
+                if n_vague == v3:
+                    monstre.boss_mouvements()
 
 
 
