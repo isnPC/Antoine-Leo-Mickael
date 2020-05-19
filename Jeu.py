@@ -23,7 +23,9 @@ bar2vie25 = pygame.image.load('Barre2vie25.png')
 bar2vie0 = pygame.image.load('Barre2vie0.png')
 
 v1 = [Chauve_souris(5, 500), Chauve_souris(15, 500), Chauve_souris(15, 500), Chauve_souris(15, 500)]
+v2 = [Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),]
 set_timer(pygame.USEREVENT, 60)
+n_vague = v1
 
 #-----[Fonctions]-----#
 
@@ -67,6 +69,17 @@ while running:
             ecran.blit(monstre.image, monstre.rect)
             barre2vie(monstre)
             mort_mob(monstre)
+        if len(v1) == 0:
+            vague = 2
+            n_vague = v2
+    if vague == 2:
+        for monstre in v2:
+            ecran.blit(monstre.image, monstre.rect)
+            barre2vie(monstre)
+            mort_mob(monstre)
+        if len(v1) == 0:
+            vague = 3
+
 
 
     for event in pygame.event.get():
@@ -82,7 +95,7 @@ while running:
 
         #-----[Mouvements Vague 1]-----#
         if event.type == pygame.USEREVENT:
-            for monstre in v1:
+            for monstre in n_vague:
                 monstre.mouvements()
 
 
