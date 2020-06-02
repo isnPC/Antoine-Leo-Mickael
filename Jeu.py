@@ -35,11 +35,11 @@ def barre2vie(mob):
     """Affiche les pvs du mob au dessus de sa tête"""
     if mob.health == mob.max_health:
         ecran.blit(bar2vie100, (mob.rect.x + 10, mob.rect.y - 20))
-    elif mob.health == mob.max_health*0.75:
+    elif mob.health < mob.max_health and mob.health > mob.max_health*0.75:
         ecran.blit(bar2vie75, (mob.rect.x + 10, mob.rect.y - 20))
-    elif mob.health == mob.max_health*0.5:
+    elif mob.health < mob.health*0.75 and mob.health > mob.max_health*0.5:
         ecran.blit(bar2vie50, (mob.rect.x + 10, mob.rect.y - 20))
-    elif mob.health == mob.max_health*0.25:
+    elif mob.health < mob.max_health*0.5 and mob.health > mob.max_health*0.25:
         ecran.blit(bar2vie25, (mob.rect.x + 10, mob.rect.y - 20))
     elif mob.health == mob.max_health*0:
         ecran.blit(bar2vie0, (mob.rect.x + 10, mob.rect.y - 20))
