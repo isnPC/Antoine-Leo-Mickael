@@ -14,4 +14,4 @@ class Monster_Truck(pygame.sprite.Sprite):
         self.rect.y = y
 
     def boss_mouvements(self):
-        self.rect = self.rect + 2*self.velocity
+        self.rect.x = self.rect.x + self.velocity
