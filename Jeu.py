@@ -23,6 +23,12 @@ bar2vie50 = pygame.image.load('Barre2vie50.png')
 bar2vie25 = pygame.image.load('Barre2vie25.png')
 bar2vie0 = pygame.image.load('Barre2vie0.png')
 
+bar2vie100_boss = pygame.image.load('Barre2vie100_boss.png')
+bar2vie75_boss = pygame.image.load('Barre2vie75_boss.png')
+bar2vie50_boss = pygame.image.load('Barre2vie50_boss.png')
+bar2vie25_boss = pygame.image.load('Barre2vie25_boss.png')
+bar2vie0_boss = pygame.image.load('Barre2vie0_boss.png')
+
 v1 = [Chauve_souris(5, 500), Chauve_souris(15, 500), Chauve_souris(15, 500), Chauve_souris(15, 500)]
 v2 = [Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500),Chauve_souris(5, 500)]
 v3 = [Monster_Truck(5, 500),]
@@ -43,6 +49,19 @@ def barre2vie(mob):
         ecran.blit(bar2vie25, (mob.rect.x + 10, mob.rect.y - 20))
     elif mob.health == mob.max_health*0:
         ecran.blit(bar2vie0, (mob.rect.x + 10, mob.rect.y - 20))
+
+def barre2vie_boss(mob):
+    """Affiche les pvs du mob au dessus de sa tête"""
+    if mob.health == mob.max_health:
+        ecran.blit(bar2vie100_boss, (10, 10))
+    elif mob.health > mob.max_health*0.75:
+        ecran.blit(bar2vie75_boss, (10, 10))
+    elif mob.health > mob.max_health*0.5:
+        ecran.blit(bar2vie50_boss, (10, 10))
+    elif mob.health > mob.max_health*0.25:
+        ecran.blit(bar2vie25_boss, (10, 10))
+    elif mob.health == mob.max_health*0:
+        ecran.blit(bar2vie0_boss, (10, 10))
 
 def mort_mob(mob):
     if mob.health == 0:
@@ -83,10 +102,10 @@ while running:
             vague = 3
             n_vague = v3
     if vague == 3:
-        for monstre in v3:
-            ecran.blit(monstre.image, monstre.rect)
-            barre2vie(monstre)
-            mort_mob(monstre)
+        for boss in v3:
+            ecran.blit(boss.image, boss.rect)
+            barre2vie_boss(boss)
+            mort_mob(boss)
 
 
 
@@ -100,7 +119,7 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                monstre.health = monstre.health - 25
+                monstre.health = monstre.health - 50
 
         #-----[Mouvements Vague 1]-----#
         if event.type == pygame.USEREVENT:
